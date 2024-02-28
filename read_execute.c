@@ -64,7 +64,7 @@ void tokenize_command(char *buffer)
 	}
 	argv[argc] = NULL;
 
-	if (strcmp(args[0], "exit") == 0)
+	if (strcmp(argv[0], "exit") == 0)
 		my_exit();
 
 	if (strchr(argv[0], '/') == NULL)
