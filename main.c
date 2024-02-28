@@ -8,26 +8,14 @@
 
 int main(void)
 {
-	int char_read;
-	size_t len;
-	char *buffer = NULL;
-
 	while (1)
 	{
-		display_prompt();
-		char_read = getline(&buffer, &len, stdin);
+		read_input();
 
-		if (char_read == -1)
+		if (!isatty(fileno(stdin)))
 		{
-			perror("getline failed");
-			exit(EXIT_FAILURE);
+			break;
 		}
-
-		if (buffer == NULL)
-		{
-			print_out("\n");
-		}
-
 	}
 	return (0);
 }
