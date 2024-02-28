@@ -52,7 +52,9 @@ void read_input(void)
 
 void execute_command(char *buffer)
 {
-	char *envp[] = {(char *) "PATH=/bin", NULL};
+	pid_t pid;
+	char *argv[20];
+	int argc = 0;
 
 	char *token = strtok(buffer, " \n");
 
@@ -60,9 +62,6 @@ void execute_command(char *buffer)
 	{
 		return;
 	}
-
-	char *argv[20];
-	int argc = 0;
 
 	while (token != NULL)
 	{
@@ -72,7 +71,7 @@ void execute_command(char *buffer)
 
 	argv[argc] = NULL;
 
-	pid_t pid = fork();
+	pid = fork();
 
 	if (pid == -1)
 	{
@@ -80,7 +79,7 @@ void execute_command(char *buffer)
 	}
 	else if (pid == 0)
 	{
-		int val = execve(argv[0], argv, envp);
+		int val = execve(argv[0], argv, NULL);
 
 		if (val == -1)
 		{
