@@ -8,6 +8,7 @@
 #include <sys/wait.h>
 #include <sys/types.h>
 #include <limits.h>
+#include <stddef.h>
 
 extern char **environ;
 
@@ -17,5 +18,6 @@ void display_prompt(void);
 void read_input(void);
 void execute_command(char command[], char *argv[]);
 void tokenize_command(char *buffer);
+void my_exit(void);
 
 #endif
