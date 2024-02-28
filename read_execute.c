@@ -90,7 +90,7 @@ void tokenize_command(char *buffer)
 	}
 	else
 	{
-		command = argv[0];
+		strcpy(command, argv[0]);
 		execute_command(command, argv);
 	}
 }
