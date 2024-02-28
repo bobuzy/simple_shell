@@ -22,3 +22,8 @@ void display_prompt(void)
 {
 	print_out("$ ");
 }
+
+void my_exit(void)
+{
+	exit(EXIT_SUCCESS);
+}
