@@ -9,7 +9,7 @@
 
 void print_out(char *str)
 {
-	write(STDOUT_FILENO, str, _strlen(str));
+	write(STDOUT_FILENO, str, strlen(str));
 }
 
 /**
