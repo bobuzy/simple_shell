@@ -54,8 +54,7 @@ void read_input(void)
 void tokenize_command(char *buffer)
 {
 	int argc = 0;
-	char command[PATH_MAX];
-	char *token, *path, *path_copy, *path_dir, *argv[20];
+	char command[PATH_MAX], *token, *path, *path_copy, *path_dir, *argv[20];
 
 	token = strtok(buffer, " \n");
 	while (token != NULL && argc < 20)
@@ -65,17 +64,18 @@ void tokenize_command(char *buffer)
 	}
 	argv[argc] = NULL;
 
+	if (strcmp(args[0], "exit") == 0)
+		my_exit();
+
 	if (strchr(argv[0], '/') == NULL)
 	{
 		path = getenv("PATH");
 		path_copy = strdup(path);
 		path_dir = strtok(path_copy, ":");
-
 		while (path_dir != NULL)
 		{
 			strcpy(command, "");
 			snprintf(command, sizeof(command), "%s/%s", path_dir, argv[0]);
-
 			if (access(command, X_OK) == 0)
 			{
 				execute_command(command, argv);
