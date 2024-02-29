@@ -12,7 +12,6 @@
 
 extern char **environ;
 
-int _strlen(char *s);
 void print_out(char *str);
 void display_prompt(void);
 void read_input(void);
